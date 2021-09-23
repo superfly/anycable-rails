@@ -1,6 +1,10 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+    stream_from "ChatChannel"
+  end
+
+  def receive
+    ActionCable.server.broadcast('ChatChannel', "received")
   end
 
   def unsubscribed

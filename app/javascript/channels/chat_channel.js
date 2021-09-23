@@ -1,15 +1,13 @@
-import consumer from "./consumer"
+import { createCable } from "@anycable/web";
 
-consumer.subscriptions.create("ChatChannel", {
-  connected() {
-    // Called when the subscription is ready for use on the server
-  },
+const cable = createCable();
 
-  disconnected() {
-    // Called when the subscription has been terminated by the server
-  },
+async function run() {
+  const channel = await cable.subscribeTo("ChatChannel")
+  const _ = await channel.perform("receive")
+  channel.on("message", (msg) => {
+    console.log(msg)
+  })
+}
 
-  received(data) {
-    // Called when there's incoming data on the websocket for this channel
-  }
-});
+run()
