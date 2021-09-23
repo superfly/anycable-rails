@@ -37,4 +37,3 @@ test:
 
 production:
   <<: *default
-  rpc_host: "su-anycable-rails.internal:8080"

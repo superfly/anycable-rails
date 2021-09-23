@@ -2,6 +2,20 @@
 # yarn lockfile v1
 
 
+"@anycable/core@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.npmjs.org/@anycable/core/-/core-0.0.5.tgz#427b1473cf4b3de3ad2b58b3c264cd8092c16b63"
+  integrity sha512-XgPuLcJg3L62Ujoizb6ZtdYYgEG0tt9SmY8xIfURb+csR6L2TEHwoDjb2nSYwAKUOWWmYyfQBX50IVQ2MpMArA==
+  dependencies:
+    nanoevents "^6.0.0"
+
+"@anycable/web@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.npmjs.org/@anycable/web/-/web-0.0.6.tgz#d526d41067005146bad7a8546a09d723c74c2e87"
+  integrity sha512-15SRq9W4XQB9T1FNH6ydfZfw0kMHVO0bBWnmHFN7CVIxPg79To6jocPlDrY5rMVuJrMYec4Vu5kSwK4XwLwrQw==
+  dependencies:
+    "@anycable/core" "^0.0.5"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.14.5":
   version "7.14.5"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.14.5.tgz#23b08d740e83f49c5e59945fbf1b43e80bbf4edb"
@@ -4268,6 +4282,11 @@ nanocolors@^0.1.5:
   version "0.1.6"
   resolved "https://registry.npmjs.org/nanocolors/-/nanocolors-0.1.6.tgz#bc2350d3edfdbfadd7ac018c855ae7c13905a6ad"
   integrity sha512-2pvTw6vYRaBLGir2xR7MxaJtyWkrn+C53EpW8yPotG+pdAwBvt0Xwk4VJ6VHLY0aLthVZPvDfm9TdZvrvAm5UQ==
+
+nanoevents@^6.0.0:
+  version "6.0.1"
+  resolved "https://registry.npmjs.org/nanoevents/-/nanoevents-6.0.1.tgz#4e49e895953d15a7ba06187d7a5fcd148abde990"
+  integrity sha512-pV++eMfEBTnNQgtzW93LfVezbA1BPaPSgIgyK+ZskLSEEKjHThs4Pp2UqfOjI+EFD3UkVYbwmpxf1WSSX0ALzA==
 
 nanomatch@^1.2.9:
   version "1.2.13"

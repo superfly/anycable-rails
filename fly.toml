@@ -18,7 +18,7 @@ kill_timeout = 5
   auto_rollback = true
 
 [[services]]
-  processes = ["web"]
+  processes = ["rails"]
   http_checks = []
   internal_port = 8080
   protocol = "tcp"

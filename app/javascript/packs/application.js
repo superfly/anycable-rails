@@ -11,3 +11,22 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import { createCable } from '@anycable/web'
+
+const cable = createCable()
+
+async function run() {
+  const channel = await cable.subscribeTo("ChatChannel", { roomId: "42" });
+  const _ = await channel.perform("speak", { msg: "Hello" });
+  channel.on("message", (msg) => {
+    if (msg.type === "typing") {
+      console.log(`User ${msg.name} is typing`);
+    } else {
+      console.log(`${msg.name}: ${msg.text}`);
+    }
+  });
+
+}
+
+run()
