@@ -31,6 +31,8 @@ RUN bundle install
 
 COPY . .
 
+RUN bundle exec rails assets:precompile
+
 FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-slim
 
 ARG RAILS_ENV=production

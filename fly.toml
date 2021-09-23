@@ -7,11 +7,18 @@ kill_timeout = 5
 
 [env]
   PORT = 8080
+  RAILS_LOG_TO_STDOUT = true
+  ANYCABLE_HOST = "::"
+  ANYCABLE_PORT = "8081"
+
+[[statics]]
+  guest_path = "/app/public"
+  url_prefix = "/"
 
 [processes]
   rails = "bundle exec puma -C config/puma.rb"
-  anycable_rpc = "bundle exec anycable"
-  anycable_go = "/bin/anycable-go --port 8081"
+  anycable_rpc = "bundle exec anycable --rpc-host [::]:50051"
+  anycable_go = "/bin/anycable-go --rpc_host=su-anycable-rails.internal:50051"
 
 [experimental]
   allowed_public_ports = []

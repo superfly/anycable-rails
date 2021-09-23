@@ -1,0 +1,3 @@
+#!/bin/sh
+
+fly deploy --build-arg RAILS_MASTER_KEY=`cat config/master.key`  --remote-only
