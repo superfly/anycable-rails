@@ -37,3 +37,4 @@ test:
 
 production:
   <<: *default
+  redis_url: redis://<%= ENV['FLY_REGION'] %>.<%= ENV['REDIS_HOST'] %>

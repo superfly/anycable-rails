@@ -1,15 +1,11 @@
-# fly.toml file generated for autumn-bush-9911 on 2021-09-23T03:51:23+02:00
-
 app = "su-anycable-rails"
-
-kill_signal = "SIGINT"
-kill_timeout = 5
 
 [env]
   PORT = 8080
   RAILS_LOG_TO_STDOUT = true
   ANYCABLE_HOST = "::"
   ANYCABLE_PORT = "8081"
+  REDIS_HOST = "su-keydb.internal"
 
 [[statics]]
   guest_path = "/app/public"
@@ -18,56 +14,37 @@ kill_timeout = 5
 [processes]
   rails = "bundle exec puma -C config/puma.rb"
   anycable_rpc = "bundle exec anycable --rpc-host [::]:50051"
-  anycable_go = "/bin/anycable-go --rpc_host=su-anycable-rails.internal:50051"
-
-[experimental]
-  allowed_public_ports = []
-  auto_rollback = true
+  anycable_go = "bin/anycable-go"
 
 [[services]]
   processes = ["rails"]
-  http_checks = []
   internal_port = 8080
-  protocol = "tcp"
-  script_checks = []
 
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
-
-  [[services.ports]]
-    handlers = ["http"]
-    port = 80
+  [[services.tcp_checks]]
 
   [[services.ports]]
     handlers = ["tls", "http"]
     port = 443
 
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 6
-    timeout = "2s"
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
 
 [[services]]
   processes = ["anycable_go"]
-  http_checks = []
   internal_port = 8081
-  protocol = "tcp"
-  script_checks = []
-
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
 
   [[services.ports]]
     handlers = ["tls", "http"]
     port = 8443
 
-  # [[services.tcp_checks]]
-  #   grace_period = "1s"
-  #   interval = "15s"
-  #   restart_limit = 6
-  #   timeout = "2s"
+  [[services.tcp_checks]]
+
+[[services]]
+  processes = ["anycable_rpc"]
+  internal_port = 50051
+
+  [[services.tcp_checks]]
+
+[experimental]
+  auto_rollback = true
