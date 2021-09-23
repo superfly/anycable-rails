@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -ue
+
+# Sync the cache back to the source path.
+# Use --times to preserve timestamps
+# Use --update to make sure that newer files in the source path
+# aren't overwritten by older files in the cache.
+
+cache_root_path=$1
+cacheable_source_paths=$2
+command=$3
+
+for path in $cacheable_source_paths; do
+  echo "Restoring cache from $cache_root_path/${path} to $path"
+  mkdir -p $cache_root_path/${path}
+  mkdir -p $path
+  rsync --archive --times --update $cache_root_path/${path}/ $path
+done
+
+echo "Running: ${command}"
+$command
+
+# Sync the working tree back to the cache.
+# Use --times to preserve timestamps
+# Use --delete to remove files from the cache that aren't present in the source path
+
+for path in $cacheable_source_paths; do
+  echo "Saving $path to cache at $cache_root_path"
+  rsync --archive --times --delete $path/ $cache_root_path/$path
+done
