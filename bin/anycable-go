@@ -2,4 +2,4 @@
 
 set -e
 
-/bin/anycable-go --rpc_host=${FLY_REGION}.su-anycable-rails.internal:50051 --redis_url=redis://${FLY_REGION}.${REDIS_HOST}
+/bin/anycable-go --rpc_host=${FLY_REGION}.su-anycable-rails.internal:50051 --redis_url=redis://test:test@${FLY_REGION}.${REDIS_HOST}
