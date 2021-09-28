@@ -1,7 +1,16 @@
 # Global Rails with Anycable
 
-This is a sample Rails 7 app for running Anycable and Rails in a geographically distributed deployment.
+This is a sample Rails 7 app with [Anycable](https://anycable.io/) setup for deployment on [Fly.io](https://fly.io). It can be deployed globally with a handful of commands, staying performant, by taking avantage of a few key features of the Fly platform.
 
+Fly can deploy app close to your users around the world. This leads to low latency response times and a noticeable boost in overall app performance in distant regions.
+
+A single Fly app may deploy multiple services in tandem, all of which may receive traffic the internet. This overcomes
+limitations on platforms like Heroku which only allow exposing a single process. This allows us to run Anycable, which needs a Ruby RPC process for each websocket handler process.
+
+Finally, the app instances share a private IPv6 network. This feature is the key to this demo: we'll be running
+a [multimaster KeyDB cluster](https://github.com/fly-apps/keydb) behind Anycable. KeyDB is a Redis fork offering some unique features like multimaster mode. Each region where our app deploys gets its own instance, and all instances replicate from each other over the Fly private network. Most importantly, *pub/sub messages are broadcast to all KeyDB peers*. Actioncable/Anycable uses pub/sub!
+
+Not that this approach should work equally well for standard ActionCable. AnyCable is just awesome, and uses a lot less memory, so we went that route here.
 ## Developement
 
 The usual `bundle install`.
