@@ -20,7 +20,6 @@ export default class extends Controller {
   }
   
   async send() {
-    this.channel.perform("receive", {msg: this.messageTarget.value})
-    //this.messageTarget.reset()
+    await this.channel.perform("receive", {msg: this.messageTarget.value})
   }
 }
