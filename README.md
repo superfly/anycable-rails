@@ -1,24 +1,9 @@
-# README
+# Global Rails with Anycable
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a sample Rails 7 app for running Anycable and Rails in a geographically distributed deployment.
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+We need to setup our app and a KeyDB cluster running in a few regions.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After setting up your fly account, clone the repo and run `fly launch`.

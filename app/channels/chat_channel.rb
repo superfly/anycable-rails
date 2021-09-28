@@ -3,8 +3,9 @@ class ChatChannel < ApplicationCable::Channel
     stream_from "ChatChannel"
   end
 
-  def receive
-    ActionCable.server.broadcast('ChatChannel', "received")
+  def receive(msg)
+    logger.info(msg)
+    ActionCable.server.broadcast('ChatChannel', msg)
   end
 
   def unsubscribed

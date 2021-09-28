@@ -68,4 +68,5 @@ gem "listen", "~> 3.7"
 
 gem "pg", "~> 1.2"
 
-gem "ruby-next", "~> 0.12.0"
+
+gem "tailwindcss-rails", "~> 0.4.3"
