@@ -13,6 +13,7 @@ export default class extends Controller {
       this.channel = await cable.subscribeTo("ChatChannel")
       this.channel.on("message", (data) => {
         const e = document.createElement("div")
+        e.setAttribute("class", "my-2 bg-purple-100 rounded-md py-1 px-3")
         e.textContent = data.msg;
         document.getElementById("messages").appendChild(e)
       })
