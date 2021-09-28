@@ -1,11 +1,16 @@
 <div data-controller="chat" class="flex items-center flex-col pt-20">
-  <form>
-    <input data-action="keydown->chat#enter" data-chat-target="message" type="text"  />
-    <button data-action="chat#send" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-      Send
-    </button>
-  </form>
-  <div class="mt-8 flex w-1/5 flex-col items-start text-lg" id="messages">
-    <div>Hey what's up</div>
+  <div data-chat-target="loading" class="text-xl">
+    Connecting to the global AnyCable...
+  </div>
+  <div id="container" data-chat-target="container" class="hidden">
+    <form>
+      <input data-action="keydown->chat#enter" data-chat-target="message" type="text"  />
+      <button data-action="chat#send" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        Send
+      </button>
+    </form>
+    <div class="mt-8 flex w-1/5 flex-col items-start text-lg" id="messages">
+      <div>Hey what's up</div>
+    </div>
   </div>
 </div>

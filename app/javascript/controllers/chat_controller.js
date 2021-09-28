@@ -3,7 +3,7 @@ import { createCable } from "@anycable/web"
 export default class extends Controller {
 
   static get targets() {
-    return ["message"]
+    return ["message", "loading", "container"]
   }
 
   async connect() {
@@ -16,6 +16,8 @@ export default class extends Controller {
         e.textContent = data.msg;
         document.getElementById("messages").appendChild(e)
       })
+      this.loadingTarget.classList.add("hidden")
+      this.containerTarget.classList.remove("hidden")
     } catch (e) {
       console.log(e)
     }
